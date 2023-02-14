@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { getSongs,updateSong,deleteSong,createSong } from './state.js';
 function* fetchSongs() {
-     try{ const songs = yield call(()=>fetch('http://localhost:5001/songs'));
+     try{ const songs = yield call(()=>fetch('https://crudaddis.onrender.com/songs'));
      const formatedSongs= yield songs.json();
      yield put(getSongs(formatedSongs.slice(0,5)));
     } catch (error) {
@@ -10,7 +10,7 @@ function* fetchSongs() {
    
 }
 function* fetchCreateSong(action) {
-  try{ const songs = yield call(()=>fetch(`http://localhost:5001/createSong`,{
+  try{ const songs = yield call(()=>fetch(`https://crudaddis.onrender.com/createSong`,{
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ function* fetchCreateSong(action) {
 
 }
 function* fetchUpdateSong(action) {
-  try{ const songs = yield call(()=>fetch(`http://localhost:5001/songs/${action.id}`,{
+  try{ const songs = yield call(()=>fetch(`https://crudaddis.onrender.com/songs/${action.id}`,{
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ function* fetchUpdateSong(action) {
 
 }
 function* fetchDeleteSong(action) {
-  try{ const songs = yield call(()=>fetch(`http://localhost:5001/songs/${action.id}`,{
+  try{ const songs = yield call(()=>fetch(`https://crudaddis.onrender.com/songs/${action.id}`,{
     method: 'DELETE',
   }));
   const formatedSongs= yield songs.json();
